@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 const { Client, MessageMedia, LocalAuth  } = require('whatsapp-web.js')
 const QRCode = require('qrcode');
+const fileUpload = require('express-fileupload');
+router.use(fileUpload())
 
 const client = new Client({
+
   // restartOnAuthFail: true,
   puppeteer: {
     headless: true,
@@ -24,15 +27,31 @@ const client = new Client({
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.get('/sendmessage', function(req, res, next) {
+router.post('/getqrcode', function(req, res, next) {
+  let med_msg = req.files.img;
+  let nums = req.files.nums;
+  let msg = req.body.msg;
+
+  console.log(msg);
   client.on('qr', qr => {
     QRCode.toDataURL(qr, (err, url)=>{
       res.render("success",{image_url : url})
     } )
   });
+
+  num_set = ['9961692453','7356469164']
   client.on('ready', () => {
-    console.log('Client is ready!');
-    client.sendMessage("919961692453@c.us","Hello")
+    console.log('Client is ready!'); 
+    num_set.forEach((obj)=>{
+      const num_id = '91'+obj+"@c.us"
+      if (num_id.length > 10){
+          client.sendMessage(num_id,msg)
+          client.sendMessage(num_id,med_msg)
+          // console.log("Done")
+      }else{
+          console.log(obj.Number + " This is not a registered number");
+        }
+  })
   });
   client.initialize();
   

@@ -1,1 +1,37 @@
-<a href="/sendmessage" class="btn btn-primary">Send Ur Message</a>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Whatsapp Message Sender Apllication</h1>
+        <p>Please enter the details in the form</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <form action="/getqrcode" method="post" role="form" enctype="multipart/form-data">
+                <legend>Enter Registration Information Here</legend>
+
+                <div class="form-group">
+                    <label for="org_name">Organization Name</label>
+                    <input value="Samiya Silks" type="text" class="form-control" name="last_name"  placeholder="Organization Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="nums">Upload the csv file containing numbers</label>
+                    <input type="file" class="form-control" name="nums">
+                </div>
+
+                <div class="form-group">
+                    <label for="pw">Enter the message to send</label>
+                    <input type="msg" class="form-control" name="msg" placeholder="Enter the message to send">
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Upload the images to send</label>
+                    <input type="file" class="form-control" name="img" id="img" >
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
