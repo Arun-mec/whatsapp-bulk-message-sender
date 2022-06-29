@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.get('/sendmessage', async function(req, res, next) {
-  
+  client.initialize();
   client.on('qr', qr => {
     QRCode.toDataURL(qr, (err, url)=>{
       res.render("success",{image_url : url})
@@ -35,6 +35,6 @@ router.get('/sendmessage', async function(req, res, next) {
     console.log('Client is ready!');
     client.sendMessage("919961692453@c.us","Hello")
   });
-  client.initialize();
+  
 });
 module.exports = router;
