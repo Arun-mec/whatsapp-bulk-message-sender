@@ -37,24 +37,22 @@ router.post('/getqrcode', function(req, res, next) {
     if (err)
       return res.send(err);
   });
-  num_csv.mv('./public/csvs/'+'nums.csv',function(err) {
+  num_csv.mv('./public/csvs/'+'nums.csv', function(err) {
     if (err)
       return res.send(err);
   });
 
-  const med_msg = MessageMedia.fromFilePath('./public/images/'+'medMsg.jpg')
-  const nums = csvToJson.fieldDelimiter(',',' ').getJsonFromCsv('./public/csvs/'+'nums.csv');
   
   client.on('qr', qr => {
     QRCode.toDataURL(qr, (err, url)=>{
       res.render("success",{image_url : url})
     } )
   });
-
+  
   client.on('ready', () => {
     console.log('Client is ready!');
-    
-
+    const med_msg = MessageMedia.fromFilePath('./public/images/'+'medMsg.jpg')
+    const nums =  csvToJson.fieldDelimiter(',',' ').getJsonFromCsv('./public/csvs/'+'nums.csv');
     nums.forEach((obj)=>{
       const num_id = obj.Number.substring(1)+"@c.us";
       if (num_id.length > 10){
