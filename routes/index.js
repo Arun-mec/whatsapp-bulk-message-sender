@@ -28,9 +28,14 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.post('/getqrcode', function(req, res, next) {
-  let med_msg = req.files.img;
+  let medMsg = req.files.img;
   let nums = req.files.nums;
   let msg = req.body.msg;
+  // moving the images to public folder to access it later
+  medMsg.mv('./public/images/'+'medMsg.jpg', function(err) {
+    if (err)
+      return res.send(err);
+  });
 
   console.log(msg);
   client.on('qr', qr => {
@@ -41,7 +46,9 @@ router.post('/getqrcode', function(req, res, next) {
 
   num_set = ['9961692453','7356469164']
   client.on('ready', () => {
-    console.log('Client is ready!'); 
+    console.log('Client is ready!');
+    
+    const med_msg = MessageMedia.fromFilePath('./public/images/'+'medMsg.jpg')
     num_set.forEach((obj)=>{
       const num_id = '91'+obj+"@c.us"
       if (num_id.length > 10){
