@@ -7,7 +7,6 @@ const fileUpload = require('express-fileupload');
 router.use(fileUpload())
 
 const client = new Client({
-
   // restartOnAuthFail: true,
   puppeteer: {
     headless: true,
@@ -32,6 +31,7 @@ router.post('/getqrcode', function(req, res, next) {
   let medMsg = req.files.img;
   let num_csv = req.files.nums;
   let msg = req.body.msg;
+  console.log(msg)
   // moving the images to public folder to access it later
   medMsg.mv('./public/images/'+'medMsg.jpg', function(err) {
     if (err)
