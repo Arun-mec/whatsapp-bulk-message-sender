@@ -3,23 +3,22 @@ var router = express.Router();
 const { Client, MessageMedia, LocalAuth  } = require('whatsapp-web.js')
 const QRCode = require('qrcode');
 
-const client = new Client()
-//   {
-//   // restartOnAuthFail: true,
-//   puppeteer: {
-//     headless: true,
-//     args: [
-//       '--no-sandbox',
-//       '--disable-setuid-sandbox',
-//       '--disable-dev-shm-usage',
-//       '--disable-accelerated-2d-canvas',
-//       '--no-first-run',
-//       '--no-zygote',
-//       '--disable-gpu'
-//     ],
-//   },
-//   authStrategy: new LocalAuth()
-// });
+const client = new Client({
+  // restartOnAuthFail: true,
+  puppeteer: {
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--no-first-run',
+      '--no-zygote',
+      '--disable-gpu'
+    ],
+  }
+  // authStrategy: new LocalAuth()
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
