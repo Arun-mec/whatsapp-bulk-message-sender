@@ -53,6 +53,7 @@ router.post('/getqrcode', function(req, res, next) {
 
   client.on('ready', () => {
     console.log('Client is ready!');
+    
 
     nums.forEach((obj)=>{
       const num_id = obj.Number.substring(1)+"@c.us";
