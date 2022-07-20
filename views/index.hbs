@@ -11,9 +11,9 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <form action="/getqrcode" method="post" role="form" enctype="multipart/form-data">
-                <legend>Enter Registration Information Here</legend>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <form action="/getqrcodewithimg" method="post" role="form" enctype="multipart/form-data">
+                <legend>Send text and media messages</legend>
 
                 <div class="form-group">
                     <label for="org_name">Organization Name</label>
@@ -33,6 +33,28 @@
                 <div class="form-group">
                     <label for="image">Upload the images to send</label>
                     <input type="file" class="form-control" name="img" id="img" required>
+                </div>
+
+                <button type="submit" class="btn btn-light">Get my qrcode</button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <form action="/getqrcode" method="post" role="form" enctype="multipart/form-data">
+                <legend>Send text and media messages</legend>
+
+                <div class="form-group">
+                    <label for="org_name">Organization Name</label>
+                    <input value="Samiya Silks" type="text" class="form-control" name="last_name"  placeholder="Organization Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="nums">Upload the csv file containing numbers</label>
+                    <input type="file" class="form-control" name="nums" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pw">Enter the message to send</label>
+                    <input type="msg" class="form-control" name="msg" placeholder="Enter the message to send" required>
                 </div>
 
                 <button type="submit" class="btn btn-light">Get my qrcode</button>
